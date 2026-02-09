@@ -19,6 +19,8 @@
    * @type {StreamFormData}
    */
   export let stream;
+  /** @type {(dimensions: { width: number, height: number }) => void} */
+  export let onVideoSize = () => {};
 
   let player, ui, video, container;
 
@@ -378,6 +380,17 @@
       video.volume = Math.max(0, video.volume - volumeChange);
     }
   }
+
+  function notifyVideoSize() {
+    if (!video?.videoWidth || !video?.videoHeight) {
+      return;
+    }
+
+    onVideoSize({
+      width: video.videoWidth,
+      height: video.videoHeight,
+    });
+  }
 </script>
 
 <div
@@ -388,6 +401,8 @@
   <!-- svelte-ignore a11y-media-has-caption -->
   <video
     on:volumechange={handleVolumeChange}
+    on:loadedmetadata={notifyVideoSize}
+    on:resize={notifyVideoSize}
     bind:this={video}
     {...$$restProps}
     autoplay

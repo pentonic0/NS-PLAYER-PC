@@ -12,7 +12,8 @@
     closeOnEsc?: boolean,
     onEsc?: Function,
     closeOnClick?: boolean,
-    onClick?: Function
+    onClick?: Function,
+    style?: string
   }} */
   let {
     icon,
@@ -128,13 +129,29 @@
     transition: opacity 0.4s ease;
   }
 
+  :global(dialog.video-player-dialog > div) {
+    overflow: visible;
+  }
+
   dialog.video-player-dialog {
-    width: min(94vw, 1420px);
-    height: min(calc(88vh - var(--navbar-height)), 860px);
-    max-width: 94vw;
-    max-height: calc(92vh - var(--navbar-height));
+    --video-width: 1280;
+    --video-height: 720;
+    width: min(
+      calc((100vh - var(--navbar-height) - 2rem) * (var(--video-width) / var(--video-height))),
+      calc(100vw - 2rem)
+    );
+    height: min(
+      calc((100vw - 2rem) * (var(--video-height) / var(--video-width))),
+      calc(100vh - var(--navbar-height) - 2rem)
+    );
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100vh - var(--navbar-height) - 2rem);
     top: calc(50% + (var(--navbar-height) / 2));
-    border-radius: 2rem;
+    border-radius: 0;
     border: none !important;
+    background: transparent !important;
+    backdrop-filter: none;
+    box-shadow: none;
+    overflow: visible;
   }
 </style>

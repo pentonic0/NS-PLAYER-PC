@@ -13,6 +13,7 @@
   import { showToast } from "$lib/toast.svelte.js";
 
   let isModalOpen = $state(false);
+  let playerDimensions = $state({ width: 1280, height: 720 });
 
   const defaultFormData = {
     streamUrl: "",
@@ -112,6 +113,11 @@
     applyStreamToForm(stream);
     updateHistory(stream);
     isModalOpen = true;
+  };
+
+  const handleVideoSize = ({ width, height }) => {
+    if (!width || !height) return;
+    playerDimensions = { width, height };
   };
 
   const formatTimestamp = (value) => {
@@ -288,15 +294,16 @@
 <div class="player-modal">
   <Dialog
     class="video-player-dialog"
+    style={`--video-width: ${playerDimensions.width}; --video-height: ${playerDimensions.height};`}
     bind:open={isModalOpen}
     closedby="closerequest"
     closeOnEsc={true}
     icon={false}
   >
     {#snippet children()}
-      <div class="player-dialog-header flex items-center justify-end px-4 py-3 border-b border-white/10 bg-black/30">
+      <div class="player-dialog-header">
         <button
-          class="w-9 h-9 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-all border border-white/10"
+          class="player-dialog-close"
           onclick={() => (isModalOpen = false)}
           aria-label="Close player"
         >
@@ -306,7 +313,7 @@
 
       {#if isModalOpen}
         <div class="video-player-frame">
-          <VideoPlayer stream={formData} />
+          <VideoPlayer stream={formData} onVideoSize={handleVideoSize} />
         </div>
       {/if}
     {/snippet}
