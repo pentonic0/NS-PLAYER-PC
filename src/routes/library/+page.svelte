@@ -287,7 +287,6 @@
 
 <div class="player-modal">
   <Dialog
-    headline="Stream Player"
     class="video-player-dialog"
     bind:open={isModalOpen}
     closedby="closerequest"
@@ -295,12 +294,15 @@
     icon={false}
   >
     {#snippet children()}
-      <button
-        class="absolute top-4 right-4 z-[1001] w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-all border border-white/10"
-        onclick={() => (isModalOpen = false)}
-      >
-        <Icon icon={closeIcon} />
-      </button>
+      <div class="player-dialog-header flex items-center justify-end px-4 py-3 border-b border-white/10 bg-black/30">
+        <button
+          class="w-9 h-9 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-all border border-white/10"
+          onclick={() => (isModalOpen = false)}
+          aria-label="Close player"
+        >
+          <Icon icon={closeIcon} />
+        </button>
+      </div>
 
       {#if isModalOpen}
         <div class="video-player-frame">
@@ -308,7 +310,6 @@
         </div>
       {/if}
     {/snippet}
-    {#snippet buttons()}{/snippet}
   </Dialog>
 </div>
 
