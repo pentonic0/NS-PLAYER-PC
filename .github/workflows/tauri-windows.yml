@@ -3,7 +3,7 @@ name: Tauri Build (Windows)
 # কখন চালানো হবে
 on:
   push:
-    branches: [ newcodex ]       # main branch এ push হলে
+    branches: [ codex/update-video-player-dialog-design ]       # main branch এ push হলে
   workflow_dispatch:          # manual trigger
 
 jobs:
