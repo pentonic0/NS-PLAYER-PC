@@ -204,6 +204,34 @@ body {
   border: none;
 }
 
+.youtube-theme .shaka-controls-button-panel {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: nowrap;
+  padding: 0 0.6rem 0.6rem;
+}
+
+.youtube-theme .shaka-controls-button-panel > * {
+  flex-shrink: 0;
+}
+
+.youtube-theme button[class*="shaka-"] {
+  width: clamp(2.2rem, 3vw, 2.6rem);
+  height: clamp(2.2rem, 3vw, 2.6rem);
+  min-width: clamp(2.2rem, 3vw, 2.6rem);
+}
+
+.youtube-theme .shaka-controls-button-panel .material-icons-round {
+  font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+}
+
+.youtube-theme .shaka-current-time,
+.youtube-theme .shaka-time-container {
+  min-width: fit-content;
+  white-space: nowrap;
+}
+
 .shaka-snack.holder {
   @apply fixed bottom-8 left-1/2 -translate-x-1/2 z-[2000];
 }
@@ -244,6 +272,26 @@ body {
 
 .player-dialog-close:hover {
   background: rgba(0, 0, 0, 0.75);
+}
+
+@media (max-width: 900px) {
+  .youtube-theme .shaka-controls-button-panel {
+    gap: 0.15rem;
+    padding: 0 0.45rem 0.45rem;
+  }
+
+  .youtube-theme button[class*="shaka-"] {
+    width: 2rem;
+    height: 2rem;
+    min-width: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .youtube-theme .shaka-current-time,
+  .youtube-theme .shaka-time-container {
+    font-size: 0.75rem;
+  }
 }
 
 /* Modal Open Helper */
