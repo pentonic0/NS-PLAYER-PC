@@ -135,5 +135,6 @@
     max-height: calc(92vh - var(--navbar-height));
     top: calc(50% + (var(--navbar-height) / 2));
     border-radius: 2rem;
+    border: none !important;
   }
 </style>
