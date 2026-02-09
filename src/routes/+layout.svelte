@@ -8,19 +8,31 @@
   import { getCurrentWindow } from "@tauri-apps/api/window";
   import { Menu, PredefinedMenuItem } from "@tauri-apps/api/menu";
 
-  const isTauri = typeof window !== 'undefined' && window.__TAURI_INTERNALS__;
+  const isTauri = typeof window !== "undefined" && !!window["__TAURI_INTERNALS__"];
+
+  const getFullscreenElement = () => {
+    const doc = /** @type {any} */ (document);
+    return (
+      doc.fullscreenElement ||
+      doc.webkitFullscreenElement ||
+      doc.mozFullScreenElement ||
+      doc.msFullscreenElement
+    );
+  };
 
   const fullscreenchanged = async () => {
+    const isFullscreen = !!getFullscreenElement();
+
+    document.body.classList.toggle("is-fullscreen", isFullscreen);
+
     if (!isTauri) return;
+
     const appWindow = getCurrentWindow();
-    if (document.fullscreenElement) {
-      document.body.classList.add("is-fullscreen");
-      await appWindow.setFullscreen(true);
-      await appWindow.setShadow(false);
-    } else {
-      document.body.classList.remove("is-fullscreen");
-      await appWindow.setFullscreen(false);
-      await appWindow.setShadow(true);
+    try {
+      await appWindow.setFullscreen(isFullscreen);
+      await appWindow.setShadow(!isFullscreen);
+    } catch (err) {
+      console.warn("Failed to sync fullscreen state with app window", err);
     }
   };
 
@@ -42,6 +54,9 @@
 
   onMount(async () => {
     document.addEventListener("fullscreenchange", fullscreenchanged);
+    document.addEventListener("webkitfullscreenchange", fullscreenchanged);
+    document.addEventListener("mozfullscreenchange", fullscreenchanged);
+    document.addEventListener("MSFullscreenChange", fullscreenchanged);
 
     if (isTauri) {
       const menuItems = await Promise.all([
@@ -70,6 +85,9 @@
 
   onDestroy(async () => {
     document.removeEventListener("fullscreenchange", fullscreenchanged);
+    document.removeEventListener("webkitfullscreenchange", fullscreenchanged);
+    document.removeEventListener("mozfullscreenchange", fullscreenchanged);
+    document.removeEventListener("MSFullscreenChange", fullscreenchanged);
   });
 </script>
 
