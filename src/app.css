@@ -218,6 +218,79 @@ body {
   background: transparent;
 }
 
+/* Shared Buttons */
+.app-btn {
+  --btn-bg: rgba(255, 255, 255, 0.04);
+  --btn-border: rgba(255, 255, 255, 0.1);
+  --btn-text: rgb(var(--m3-scheme-on-surface));
+  --btn-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  --btn-bg-hover: rgba(255, 255, 255, 0.08);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding-inline: clamp(0.95rem, 2.2vw, 1.4rem);
+  padding-block: clamp(0.6rem, 1.2vw, 0.78rem);
+  border-radius: 0.95rem;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-size: clamp(0.79rem, 1.2vw, 0.9rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.015em;
+  box-shadow: var(--btn-shadow);
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
+}
+
+.app-btn:hover {
+  background: var(--btn-bg-hover);
+  transform: translateY(-1px);
+}
+
+.app-btn:active {
+  transform: translateY(0);
+}
+
+.app-btn-primary {
+  --btn-bg: linear-gradient(135deg, rgb(var(--m3-scheme-primary)), rgb(var(--m3-scheme-primary-container)));
+  --btn-bg-hover: linear-gradient(135deg, rgba(var(--m3-scheme-primary) / 0.95), rgba(var(--m3-scheme-primary-container) / 0.95));
+  --btn-border: rgba(var(--m3-scheme-primary) / 0.4);
+  --btn-text: rgb(var(--m3-scheme-on-primary));
+  --btn-shadow: 0 10px 22px rgba(var(--m3-scheme-primary) / 0.35);
+}
+
+.app-btn-ghost {
+  --btn-bg: rgba(255, 255, 255, 0.03);
+  --btn-bg-hover: rgba(255, 255, 255, 0.08);
+}
+
+.app-icon-btn {
+  width: clamp(2.5rem, 5vw, 2.85rem);
+  height: clamp(2.5rem, 5vw, 2.85rem);
+  min-height: 0;
+  min-width: 0;
+  padding: 0;
+}
+
+.app-fab {
+  position: fixed;
+  right: clamp(0.9rem, 2.8vw, 2rem);
+  bottom: clamp(0.9rem, 2.8vw, 2rem);
+  z-index: 100;
+  border-radius: 1rem;
+}
+
+@media (max-width: 640px) {
+  .app-fab {
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+  }
+}
+
 .player-dialog-header {
   position: absolute;
   top: 0.75rem;

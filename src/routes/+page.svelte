@@ -295,17 +295,17 @@
         Configure your stream parameters below. Support for <span class="text-white font-medium">DASH, HLS</span>, and various <span class="text-white font-medium">DRM schemes</span> with advanced header overrides.
       </p>
     </div>
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-3 flex-wrap md:flex-nowrap">
       <button
         onclick={resetFormData}
-        class="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 text-on-surface-variant hover:text-white hover:bg-white/5 transition-all text-sm font-semibold"
+        class="app-btn app-btn-ghost"
       >
         <Icon icon={refreshIcon} />
         Clear Form
       </button>
       <button
         onclick={handleSubmit}
-        class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-white shadow-lg shadow-primary/25 hover:scale-[1.02] active:scale-[0.98] transition-all text-sm font-bold"
+        class="app-btn app-btn-primary"
       >
         <Icon icon={playCircleIcon} class="text-lg" />
         Launch Player
@@ -512,7 +512,7 @@
           </div>
           <button
             onclick={saveStream}
-            class="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs font-bold border border-white/10 transition-all flex items-center justify-center gap-2"
+            class="app-btn app-btn-ghost w-full"
           >
             <Icon icon={contentSaveIcon} />
             Store Permanently
@@ -535,7 +535,7 @@
                   <span class="text-sm font-bold text-white truncate pr-8">{item.name}</span>
                   <button
                     onclick={() => playStreamFromData(item.stream)}
-                    class="absolute top-3 right-3 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-lg shadow-primary/30 scale-90 group-hover:scale-100"
+                    class="absolute top-3 right-3 app-btn app-btn-primary app-icon-btn opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100"
                   >
                     <Icon icon={playCircleIcon} />
                   </button>
@@ -561,7 +561,7 @@
 
 <button
   onclick={handleSubmit}
-  class="fixed bottom-8 right-8 z-[100] flex items-center gap-3 px-6 py-4 rounded-2xl bg-primary text-white shadow-2xl shadow-primary/40 hover:scale-105 active:scale-95 transition-all group"
+  class="app-btn app-btn-primary app-fab group"
 >
   <div class="w-6 h-6 rounded-lg bg-white/20 flex items-center justify-center group-hover:rotate-12 transition-transform">
     <Icon icon={playCircleIcon} class="text-lg" />

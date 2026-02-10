@@ -205,21 +205,21 @@
               <div class="flex items-center gap-2">
                 <button
                   onclick={() => playStreamFromData(item.stream)}
-                  class="w-11 h-11 rounded-xl bg-primary text-white hover:scale-105 active:scale-95 transition-all shadow-lg shadow-primary/20 flex items-center justify-center"
+                  class="app-btn app-btn-primary app-icon-btn"
                   title="Play Stream"
                 >
                   <Icon icon={playCircleIcon} class="text-xl" />
                 </button>
                 <a
                   href={`/saved/${item.id}`}
-                  class="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-white hover:bg-white/10 transition-all border border-white/10"
+                  class="app-btn app-btn-ghost app-icon-btn text-on-surface-variant hover:text-white"
                   title="Details"
                 >
                   <Icon icon={infoIcon} class="text-lg" />
                 </a>
                 <button
                   onclick={() => deleteSavedStream(item.id)}
-                  class="w-11 h-11 rounded-xl bg-white/5 text-on-surface-variant hover:text-red-400 hover:bg-red-500/10 hover:border-red-500/20 transition-all border border-white/10 flex items-center justify-center"
+                  class="app-btn app-btn-ghost app-icon-btn text-on-surface-variant hover:text-red-400 hover:border-red-500/20"
                   title="Delete"
                 >
                   <Icon icon={trashIcon} class="text-lg" />
@@ -251,7 +251,7 @@
         {#if streamHistory.length}
           <button
             onclick={clearHistory}
-            class="text-[10px] font-black text-red-400 hover:text-red-300 transition-colors uppercase tracking-[0.2em] bg-red-500/10 px-3 py-1.5 rounded-lg border border-red-500/10"
+            class="app-btn app-btn-ghost text-[10px] uppercase tracking-[0.2em] text-red-400 hover:text-red-300 border-red-500/20"
           >
             Clear All
           </button>
